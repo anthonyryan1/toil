@@ -1,6 +1,8 @@
 # Toil
 An eisenhower matrix based to-do list.
 
+![Toil Screenshot](https://raw.github.com/anthonyryan1/toil/master/img/screenshot.jpg)
+
 I used to have a text file that was a todo list, and it worked well, until it grew far beyond control.
 Then I tried out Wunderlist and while an elegant presentation, I quickly lost track of what was important.
 Then I spent a weekend trying out angularjs to build a todo list just for myself, and this is it.
