@@ -1,7 +1,7 @@
 # Toil
 An eisenhower matrix based to-do list.
 
-![Toil Screenshot](https://raw.github.com/anthonyryan1/toil/master/img/screenshot.jpg)
+![Toil Screenshot](https://raw.github.com/anthonyryan1/toil/master/img/screenshot.png)
 
 I used to have a text file that was a todo list, and it worked well, until it grew far beyond control.
 Then I tried out Wunderlist and while an elegant presentation, I quickly lost track of what was important.
