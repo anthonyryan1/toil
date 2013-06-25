@@ -1,0 +1,138 @@
+<!DOCTYPE html> 
+<html ng-app="toil">
+<head>
+	<title>Toil</title>
+	<link rel="stylesheet" href="/css/base.css" />
+</head>
+<body ng-controller="toil_controller" ng-click="hideDetails()">
+	<div id="lists">
+	</div>
+	<div id="tasks">
+		<form ng-submit="add()">
+			<input class="new" placeholder="Add a new task..." ng-model="newTodo" autofocus="autofocus" maxlength="255" />
+		</form>
+
+		<div ng-show="countUI">
+			<h2>Urgent &amp; Important ({{countUI}})</h2>
+						<div
+				ng-repeat="todo in tasks | filter:filterUI"
+				class="view"
+				ng-click="details(todo); $event.stopPropagation()"
+				ng-class="{completed: todo.completed, selected: todo==selected}"
+			>
+				<div class="urgent" title="{{todo.urgent && 'Urgent' || 'Not Urgent'}}" data-state="{{todo.urgent}}">
+					<input type="checkbox" ng-model="todo.urgent" ng-change="toggleUrgent(todo)" />
+				</div>
+
+				<div class="important" title="{{todo.important && 'Important' || 'Unimportant'}}" data-state="{{todo.important}}">
+					<input type="checkbox" ng-model="todo.important" ng-change="toggleImportant(todo)" />
+				</div>
+
+				<input class="title" type="text" ng-model="todo.title" ng-change="editTitle(todo)" />
+				<button class="destroy" ng-click="remove(todo)">&#215;</button>
+			</div>
+		</div>
+
+		<div ng-show="countI">
+			<h2>Important ({{countI}})</h2>
+			<div
+				ng-repeat="todo in tasks | filter:filterI"
+				class="view"
+				ng-click="details(todo); $event.stopPropagation()"
+				ng-class="{completed: todo.completed, selected: todo==selected}"
+			>
+				<div class="urgent" title="{{todo.urgent && 'Urgent' || 'Not Urgent'}}" data-state="{{todo.urgent}}">
+					<input type="checkbox" ng-model="todo.urgent" ng-change="toggleUrgent(todo)" />
+				</div>
+
+				<div class="important" title="{{todo.important && 'Important' || 'Unimportant'}}" data-state="{{todo.important}}">
+					<input type="checkbox" ng-model="todo.important" ng-change="toggleImportant(todo)" />
+				</div>
+
+				<input class="title" type="text" ng-model="todo.title" ng-change="editTitle(todo)" />
+				<button class="destroy" ng-click="remove(todo)">&#215;</button>
+			</div>
+		</div>
+
+		<div ng-show="countU">
+			<h2>Urgent ({{countU}})</h2>
+			<div
+				ng-repeat="todo in tasks | filter:filterU"
+				class="view"
+				ng-click="details(todo); $event.stopPropagation()"
+				ng-class="{completed: todo.completed, selected: todo==selected}"
+			>
+				<div class="urgent" title="{{todo.urgent && 'Urgent' || 'Not Urgent'}}" data-state="{{todo.urgent}}">
+					<input type="checkbox" ng-model="todo.urgent" ng-change="toggleUrgent(todo)" />
+				</div>
+
+				<div class="important" title="{{todo.important && 'Important' || 'Unimportant'}}" data-state="{{todo.important}}">
+					<input type="checkbox" ng-model="todo.important" ng-change="toggleImportant(todo)" />
+				</div>
+
+				<input class="title" type="text" ng-model="todo.title" ng-change="editTitle(todo)" />
+				<button class="destroy" ng-click="remove(todo)">&#215;</button>
+			</div>
+		</div>
+
+		<div ng-show="countE">
+			<h2>Everything Else ({{countE}})</h2>
+			<div
+				ng-repeat="todo in tasks | filter:filterE"
+				class="view"
+				ng-click="details(todo); $event.stopPropagation()"
+				ng-class="{completed: todo.completed, selected: todo==selected}"
+			>
+				<div class="urgent" title="{{todo.urgent && 'Urgent' || 'Not Urgent'}}" data-state="{{todo.urgent}}">
+					<input type="checkbox" ng-model="todo.urgent" ng-change="toggleUrgent(todo)" />
+				</div>
+
+				<div class="important" title="{{todo.important && 'Important' || 'Unimportant'}}" data-state="{{todo.important}}">
+					<input type="checkbox" ng-model="todo.important" ng-change="toggleImportant(todo)" />
+				</div>
+
+				<input class="title" type="text" ng-model="todo.title" ng-change="editTitle(todo)" />
+				<button class="destroy" ng-click="remove(todo)">&#215;</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="details" ng-show="showDetails" ng-click="$event.stopPropagation()">
+		<div class="urgent" title="{{selected.urgent && 'Urgent' || 'Not Urgent'}}" data-state="{{selected.urgent}}">
+			<input type="checkbox" ng-model="selected.urgent" ng-change="toggleUrgent(selected)" />
+		</div>
+		<div class="important" title="{{selected.important && 'Important' || 'Unimportant'}}" data-state="{{selected.important}}">
+			<input type="checkbox" ng-model="selected.important" ng-change="toggleImportant(selected)" />
+		</div>
+		<input class="header" type="text" ng-model="selected.title" ng-change="editTitle(selected)" />
+		<time datetime="YYYY-MM-DDThh:mm:ssTZD">{{selected.added | date:'yyyy-MM-dd'}}</time>
+
+		<div class="subitems">
+			<form ng-submit="addSubtask(selected)">
+				<input class="new" placeholder="Add subtask..." ng-model="newSubtask" maxlength="255" />
+			</form>
+
+			<div
+				ng-repeat="subtask in selected.subtasks"
+				class="view"
+				ng-class="{completed: subtask.completed}"
+			>
+				<input class="title" type="text" ng-model="subtask.title" ng-change="editTitle(selected)" />
+				<button class="destroy" ng-click="removeSubtask(selected, subtask)">&#215;</button>
+			</div>
+
+			<pre class="notes" contenteditable="plaintext-only" ng-model="selected.note" ng-change="editNote(selected)">{{selected.note}}</pre>
+		</div>
+		<!-- <input type="checkbox" />
+		<input type="text" value="Subitem text" /> -->
+
+	</div>
+
+	<script src="/js/angular.min.js"></script>
+	<script src="/js/angular-resource.min.js"></script>
+	<script src="/js/app.js"></script>
+	<script src="/js/contenteditable.js"></script>
+	<script src="/js/controller.js"></script>
+	<script src="/js/mongolabResourceHttp.js"></script>
+</body>
+</html>

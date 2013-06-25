@@ -1,0 +1,7 @@
+server {
+	listen 80;
+	server_name toil.domain.tld;
+	root /path/to/toil;
+	auth_basic "Toil";
+	auth_basic_user_file /path/to/.htpasswd; #file with user:pass info
+}

@@ -1,0 +1,262 @@
+@import 'compass/css3/box-shadow';
+@import 'compass/css3/border-radius';
+@import "compass/css3/box-sizing";
+@import "compass/css3/transition";
+
+@mixin placeholder($color) {
+	::-webkit-input-placeholder {
+		color: $color;
+	}
+
+	:-moz-placeholder { /* Firefox 18- */
+		color: $color;
+	}
+
+	::-moz-placeholder {  /* Firefox 19+ */
+		color: $color;
+	}
+
+	:-ms-input-placeholder {  
+		color: $color;
+	}
+}
+
+@mixin flex-container {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: flex;	
+}
+
+@mixin flex-unit($unit: 1) {
+	flex: 1;
+	-webkit-flex: 1;
+	-moz-flex: 1;
+}
+
+
+* {
+	margin: 0;
+	padding: 0;
+	@include box-sizing(border-box);
+}
+
+body {
+	font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color: #000;
+	background: #dfc091 url('/img/background.png');
+
+	@include flex-container;
+
+	min-width: 1000px;
+}
+
+//Someday this will contain people, rather than jsut me
+#lists {
+	display: none;
+}
+
+#tasks {
+	@include flex-unit;
+	h2 {
+		margin-top: 10px;
+		font-size: 14px;
+		line-height: 14px;
+		padding: 6px 0 4px 0;
+	}
+
+	margin: 0 20px;
+
+	//Pointer rather than text indicator for unselected items
+	.view {
+		.title {
+			cursor: pointer;
+		}
+
+		&.selected {
+			.title {
+				cursor: text;
+			}
+		}
+	}
+}
+
+#details {
+	@include border-radius(2px);
+	@include single-box-shadow(rgba(0,0,0,0.5), 0, 1px, 3px, 0);
+
+	width: 350px;
+	margin: 20px 20px 0 0;
+
+	background: rgba(0,0,0,0.75);
+	border: 1px solid #222;
+
+	position: relative;
+	.urgent, .important {
+		top: -1px;
+		position: absolute;
+		width: 41px;
+		height: 64px;
+
+		input {
+			width: 41px + 5px * 2;
+			height: 64px + 5px * 2;
+			margin: -5px 0 0 -5px;
+			opacity: 0;
+		}
+	}
+
+	.urgent {
+		left: 4px;
+	}
+
+	.important {
+		left: 41px + 4px;
+	}
+
+	.header {
+		border: 0;
+		background: 0;
+		&:focus {
+			outline: none;
+		}
+
+		color: #DFDFDF;
+
+		margin: 10px 10px 0 90px;
+
+		font-size: 16px;
+		line-height: 16px;
+		font-weight: bold;
+	}
+
+	time {
+		margin-left: 90px;
+		color: #DFDFDF;
+	}
+
+	.subitems {
+		margin: 0 10px;
+		.new {
+			margin-bottom: 4px
+		}
+	}
+
+	.notes {
+		margin-top: 20px;
+		margin-bottom: 10px;
+		padding: 10px;
+
+		// @include border-radius(2px);
+		@include single-box-shadow(rgba(0,0,0,0.5), 0, 1px, 3px, 0);
+
+		width: 100%;
+		min-height: 24px*5;
+
+		resize: none;
+		overflow: hidden;
+
+		background: #f8f5db;
+	}
+}
+
+@include placeholder(#fff);
+
+.new {
+	padding: 0 2px 0 10px;
+	border: 1px solid #EEE;
+	background: rgba(0,0,0,0.25);
+	@include single-box-shadow(rgba(0,0,0,0.5), 0, 1px, 3px, 0);
+	@include border-radius(2px);
+
+	color: #fff;
+
+	height: 28px;
+	width: 100%;
+
+	margin-top: 20px;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+.view {
+	@include flex-container();
+
+	padding-left: 2px;
+	height: 24px;
+	margin-bottom: 4px;
+	background: #F0F0F0;
+	border: 1px solid #fbfaf8;
+	@include border-radius(2px);
+	@include single-box-shadow(rgba(0,0,0,0.5), 0, 1px, 3px, 0);
+
+	.title {
+		height: 22px; //Temporary fix for a Chrome bug
+
+		padding-left: 4px;
+
+		@include flex-unit;
+
+		vertical-align: baseline;
+
+		border: none;
+		background: none;
+		&:focus {
+			outline: none;
+		}
+	}
+
+	&.selected {
+		background: #dcdff8;
+		border: 1px solid lighten(#dcdff8, 5%);
+	}
+}
+
+
+.urgent, .important {
+	background-repeat: no-repeat;
+
+	display: inline-block;
+	width: 16px;
+	height: 24px;
+
+	margin-top: -2px;
+
+	input {
+		cursor: pointer;
+
+		width: 24px + 5px * 2;
+		height: 24px + 5px * 2;
+		margin: -5px 0 0 -5px;
+		opacity: 0;
+	}
+}
+
+.urgent {
+	background-size: 100%;
+	background-image: url('/img/urgent.png');
+
+	&[data-state="false"] {
+		background-image: url('/img/not-urgent.png');
+	}
+}
+
+.important {
+	background-size: 100%;
+	background-image: url('/img/important.png');
+
+	&[data-state="false"] {
+		background-image: url('/img/not-important.png');
+	}
+}
+
+button {
+	border: none;
+	border-left: 1px dotted #bbb;
+	background: none;
+
+	cursor: pointer;
+	width: 20px;
+	height: 100%;
+}

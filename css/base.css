@@ -1,0 +1,259 @@
+/* line 37, ../sass/base.scss */
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 43, ../sass/base.scss */
+body {
+  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #000;
+  background: #dfc091 url("/img/background.png");
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  min-width: 1000px;
+}
+
+/* line 54, ../sass/base.scss */
+#lists {
+  display: none;
+}
+
+/* line 58, ../sass/base.scss */
+#tasks {
+  flex: 1;
+  -webkit-flex: 1;
+  -moz-flex: 1;
+  margin: 0 20px;
+}
+/* line 60, ../sass/base.scss */
+#tasks h2 {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 14px;
+  padding: 6px 0 4px 0;
+}
+/* line 71, ../sass/base.scss */
+#tasks .view .title {
+  cursor: pointer;
+}
+/* line 76, ../sass/base.scss */
+#tasks .view.selected .title {
+  cursor: text;
+}
+
+/* line 83, ../sass/base.scss */
+#details {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  width: 350px;
+  margin: 20px 20px 0 0;
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid #222222;
+  position: relative;
+}
+/* line 94, ../sass/base.scss */
+#details .urgent, #details .important {
+  top: -1px;
+  position: absolute;
+  width: 41px;
+  height: 64px;
+}
+/* line 100, ../sass/base.scss */
+#details .urgent input, #details .important input {
+  width: 51px;
+  height: 74px;
+  margin: -5px 0 0 -5px;
+  opacity: 0;
+}
+/* line 108, ../sass/base.scss */
+#details .urgent {
+  left: 4px;
+}
+/* line 112, ../sass/base.scss */
+#details .important {
+  left: 45px;
+}
+/* line 116, ../sass/base.scss */
+#details .header {
+  border: 0;
+  background: 0;
+  color: #DFDFDF;
+  margin: 10px 10px 0 90px;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: bold;
+}
+/* line 119, ../sass/base.scss */
+#details .header:focus {
+  outline: none;
+}
+/* line 132, ../sass/base.scss */
+#details time {
+  margin-left: 90px;
+  color: #DFDFDF;
+}
+/* line 137, ../sass/base.scss */
+#details .subitems {
+  margin: 0 10px;
+}
+/* line 139, ../sass/base.scss */
+#details .subitems .new {
+  margin-bottom: 4px;
+}
+/* line 144, ../sass/base.scss */
+#details .notes {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding: 10px;
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  width: 100%;
+  min-height: 120px;
+  resize: none;
+  overflow: hidden;
+  background: #f8f5db;
+}
+
+/* line 7, ../sass/base.scss */
+::-webkit-input-placeholder {
+  color: white;
+}
+
+/* line 11, ../sass/base.scss */
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: white;
+}
+
+/* line 15, ../sass/base.scss */
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: white;
+}
+
+/* line 19, ../sass/base.scss */
+:-ms-input-placeholder {
+  color: white;
+}
+
+/* line 164, ../sass/base.scss */
+.new {
+  padding: 0 2px 0 10px;
+  border: 1px solid #eeeeee;
+  background: rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  color: #fff;
+  height: 28px;
+  width: 100%;
+  margin-top: 20px;
+}
+/* line 178, ../sass/base.scss */
+.new:focus {
+  outline: none;
+}
+
+/* line 183, ../sass/base.scss */
+.view {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  padding-left: 2px;
+  height: 24px;
+  margin-bottom: 4px;
+  background: #F0F0F0;
+  border: 1px solid #fbfaf8;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+}
+/* line 194, ../sass/base.scss */
+.view .title {
+  height: 22px;
+  padding-left: 4px;
+  flex: 1;
+  -webkit-flex: 1;
+  -moz-flex: 1;
+  vertical-align: baseline;
+  border: none;
+  background: none;
+}
+/* line 205, ../sass/base.scss */
+.view .title:focus {
+  outline: none;
+}
+/* line 210, ../sass/base.scss */
+.view.selected {
+  background: #dcdff8;
+  border: 1px solid #f1f2fc;
+}
+
+/* line 217, ../sass/base.scss */
+.urgent, .important {
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 16px;
+  height: 24px;
+  margin-top: -2px;
+}
+/* line 226, ../sass/base.scss */
+.urgent input, .important input {
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  margin: -5px 0 0 -5px;
+  opacity: 0;
+}
+
+/* line 236, ../sass/base.scss */
+.urgent {
+  background-size: 100%;
+  background-image: url("/img/urgent.png");
+}
+/* line 240, ../sass/base.scss */
+.urgent[data-state="false"] {
+  background-image: url("/img/not-urgent.png");
+}
+
+/* line 245, ../sass/base.scss */
+.important {
+  background-size: 100%;
+  background-image: url("/img/important.png");
+}
+/* line 249, ../sass/base.scss */
+.important[data-state="false"] {
+  background-image: url("/img/not-important.png");
+}
+
+/* line 254, ../sass/base.scss */
+button {
+  border: none;
+  border-left: 1px dotted #bbbbbb;
+  background: none;
+  cursor: pointer;
+  width: 20px;
+  height: 100%;
+}

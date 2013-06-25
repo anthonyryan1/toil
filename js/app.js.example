@@ -1,0 +1,8 @@
+"use strict";
+var app = angular.module('toil', ['mongolabResourceHttp']);
+
+app.constant('MONGOLAB_CONFIG',{API_KEY:'<your api key here>', DB_NAME:'toil'});
+
+app.factory('Project', function($mongolabResourceHttp) {
+    return $mongolabResourceHttp('<collection name>');
+});
