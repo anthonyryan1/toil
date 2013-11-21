@@ -46,6 +46,7 @@ body {
 	background: #dfc091 url('/img/background.png');
 
 	@include flex-container;
+	align-items: flex-start;
 
 	min-width: 1000px;
 }
